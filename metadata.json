@@ -1,0 +1,6 @@
+{
+  "name": "Vibe Coding News",
+  "description": "A dedicated news portal and blog focused on the Vibe Coding phenomenon, AI-assisted development, and the future of software engineering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

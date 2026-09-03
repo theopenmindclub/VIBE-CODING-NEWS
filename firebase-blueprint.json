@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "Comment": {
+      "title": "Comment",
+      "description": "User generated comments on articles",
+      "type": "object",
+      "properties": {
+        "articleId": {
+          "type": "string",
+          "description": "The unique ID of the article being commented on"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The unique ID of the user who posted the comment"
+        },
+        "userEmail": {
+          "type": "string",
+          "description": "The email of the user who posted the comment"
+        },
+        "userName": {
+          "type": "string",
+          "description": "The name or email prefix of the user who posted the comment"
+        },
+        "text": {
+          "type": "string",
+          "description": "The content of the comment"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the comment was created"
+        },
+        "parentId": {
+          "type": "string",
+          "description": "The unique ID of the parent comment if this is a nested reply"
+        }
+      },
+      "required": ["articleId", "userId", "userEmail", "userName", "text"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Profile information including daily reading streak data",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The unique ID of the user"
+        },
+        "streakCount": {
+          "type": "integer",
+          "description": "The current continuous days of reading articles"
+        },
+        "lastReadDate": {
+          "type": "string",
+          "description": "The last date (YYYY-MM-DD) the user read an article"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp of the last profile update"
+        }
+      },
+      "required": ["userId", "streakCount", "lastReadDate"]
+    },
+    "UserBookmarks": {
+      "title": "UserBookmarks",
+      "description": "Bookmark list of articles for each user",
+      "type": "object",
+      "properties": {
+        "articleIds": {
+          "type": "array",
+          "description": "The list of article IDs that are bookmarked"
+        }
+      },
+      "required": ["articleIds"]
+    }
+  },
+  "firestore": {
+    "/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Collection of article comments and nested replies"
+    },
+    "/users_profiles/{userId}": {
+      "schema": "UserProfile",
+      "description": "Collection of user profiles containing reading streaks and user statistics"
+    },
+    "/users_bookmarks/{userId}": {
+      "schema": "UserBookmarks",
+      "description": "Collection of user bookmark entries for saved reading"
+    }
+  }
+}
